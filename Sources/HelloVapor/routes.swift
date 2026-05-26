@@ -11,6 +11,11 @@ func routes(_ app: Application) throws {
         "Hello, world!"
     }
     
+    app.post("movies") {req async throws in
+        let movie = try req.content.decode(Movies.self)
+        return movie
+    }
+    
     
     app.get("customers", ":customerId") { req async throws -> String in
         guard let customerId = req.parameters.get("customerId", as: Int.self) else {
@@ -21,7 +26,7 @@ func routes(_ app: Application) throws {
     
     //http://127.0.0.1:8080/movies
     app.get("movies") { req async -> [Movies] in
-            [Movies(title: "Dummy")]
+        [Movies(title: "Dummy1", year: 2020), Movies(title: "Dummy2", year: 2020), Movies(title: "Dummy3", year: 1984)]
         }
     
     ///route parameters/ dynamic parameter

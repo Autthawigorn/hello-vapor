@@ -10,4 +10,5 @@ import Vapor
 
 struct Movies: Content {
     let title: String
+    let year: Int
 }
