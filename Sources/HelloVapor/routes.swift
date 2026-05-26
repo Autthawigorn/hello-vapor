@@ -6,6 +6,11 @@ func routes(_ app: Application) throws {
         "It works!"
     }
     
+    app.post("movies") { req async throws in
+        let movie = try req.content.decode(Movies.self)
+        return movie
+    }
+    
     //http://127.0.0.1:8080/hello
     app.get("hello") { req async -> String in
         "Hello, world!"
