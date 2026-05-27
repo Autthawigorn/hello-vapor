@@ -9,12 +9,25 @@ import Foundation
 import Vapor
 
 struct MovieController: RouteCollection {
-    func boot(routes: RoutesBuilder) throws {
+    func boot(routes: any RoutesBuilder) throws {
         let movies = routes.grouped("movies")
+        
+        // /Movies
         movies.get(use: getAllHandler)
+        
+        // /Movies/23
+        movies.get(":movieId", use: showId)
+        
+    }
+
+    func getAllHandler(_ req: Request) throws -> String {
+        return "Index"
     }
     
-    func getAllHandler(_ req: Request) throws -> EventLoopFuture<[Movie]> {
-        return Movie.query(on: req.application.server.self).all()
+    func showId(_ req: Request) throws -> String {
+        guard let movieId = req.parameters.get("movieId", as: Int.self) else {
+            throw Abort(.badRequest)
+        }
+        return "Show \(movieId)"
     }
 }

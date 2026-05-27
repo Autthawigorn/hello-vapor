@@ -2,33 +2,35 @@ import Vapor
 
 func routes(_ app: Application) throws {
  
+    try app.register(collection: MovieController())
+    
 
-    let movies = app.grouped("movies")
-    let users = app.grouped("users")
-    
-    // /movies
-    movies.get { req async -> String in
-        "movies"
-    }
-    // /movies/12
-    movies.get(":movieId") { req async throws -> String in
-       guard let movieId =  req.parameters.get("movieId") else {
-            throw Abort(.badRequest)
-        }
-        return "movie = \(movieId)"
-    }
-    
-    
-    
-    // /users
-    users.get { req async -> String in
-        "users"
-    }
-    
-    // /users/premimium
-    users.get("premium") { req async -> String in
-        "Premium User"
-    }
+//    let movies = app.grouped("movies")
+//    let users = app.grouped("users")
+//    
+//    // /movies
+//    movies.get { req async -> String in
+//        "movies"
+//    }
+//    // /movies/12
+//    movies.get(":movieId") { req async throws -> String in
+//       guard let movieId =  req.parameters.get("movieId") else {
+//            throw Abort(.badRequest)
+//        }
+//        return "movie = \(movieId)"
+//    }
+//    
+//    
+//    
+//    // /users
+//    users.get { req async -> String in
+//        "users"
+//    }
+//    
+//    // /users/premimium
+//    users.get("premium") { req async -> String in
+//        "Premium User"
+//    }
     
     
     
