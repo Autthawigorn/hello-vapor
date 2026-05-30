@@ -1,7 +1,8 @@
 import Fluent
 
-struct CreateMovies: AsyncMigration {
+struct CreateMoviesTableMigration: AsyncMigration {
     func prepare(on database: any Database) async throws {
+        // create vovies table
         try await database.schema("movies")
             .id()
             .field("title", .string, .required)
@@ -9,6 +10,7 @@ struct CreateMovies: AsyncMigration {
     }
 
     func revert(on database: any Database) async throws {
+        // delete movie table
         try await database.schema("movies").delete()
     }
 }

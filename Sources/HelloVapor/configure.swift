@@ -15,7 +15,7 @@ public func configure(_ app: Application) async throws {
         )), as: .psql)
     }
 
-    app.migrations.add(CreateMovies())
+    app.migrations.add(CreateMoviesTableMigration())
     try await app.autoMigrate()
 
     try routes(app)
