@@ -9,6 +9,7 @@ struct CreateMoviesTableMigration: AsyncMigration {
             .create()
     }
 
+    //undo migration
     func revert(on database: any Database) async throws {
         // delete movie table
         try await database.schema("movies").delete()

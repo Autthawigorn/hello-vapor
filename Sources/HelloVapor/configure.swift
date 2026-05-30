@@ -16,7 +16,7 @@ public func configure(_ app: Application) async throws {
     }
 
     app.migrations.add(CreateMoviesTableMigration())
-    try await app.autoMigrate()
+   // try await app.autoMigrate()
 
     try routes(app)
 }
